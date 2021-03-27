@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : PlayerBehaviour
 {
     protected float getAxis;
+    protected float onRun;
     protected InputApp controls;
 
     public bool onJump;
@@ -18,11 +19,20 @@ public class PlayerController : PlayerBehaviour
             getAxis = 0;
             anim.SetBool("Walk", false);
         };
+        controls.Player.Run.performed += ctx => onRun = ctx.ReadValue<float>();
+        controls.Player.Run.canceled += ctx =>
+        {
+            onRun = 0;
+            anim.SetBool("Run", false);
+            moveSpeed = defaultSpeed;
+        };
+
        //controls.Player.Jump.performed += ctx => onJump = true;
     }
     private void Start()
     {
         Init();
+        defaultSpeed = moveSpeed;
     }
     private void OnEnable()
     {
@@ -35,23 +45,22 @@ public class PlayerController : PlayerBehaviour
     private void Update()
     {
         //GetAxisMovement();
-        Movement(getAxis);
         JumpHold();
-        //ModifyPhysic();
-        //InputActionJump();
+        Run(onRun);
+        //InputActionRunJump();
     }
-    public void GetAxisMovement()
+    private void FixedUpdate()
     {
-        direction.x = Input.GetAxis("Horizontal");
-        Movement(direction.x);
+        MovementVelocity(getAxis);
     }
-    public void InputActionJump()
+    public void InputActionRunJump()
     {
         if(onJump && grounded)
         {
-            Jump();
+            RunJump();
         }
         onJump = false;
+        ModifyPhysic();
     }
    
 }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    [SerializeField] protected float runSpeed;
     [SerializeField] protected float moveSpeed;
+    [SerializeField] protected float defaultSpeed;
     [SerializeField] protected Vector2 direction;
     [SerializeField] protected Rigidbody2D rb;
 
@@ -27,11 +29,6 @@ public class PlayerBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
-    private void Update()
-    {
-        
-    }
-
     public void Movement(float _direction)
     {
         if (_direction != 0)
@@ -42,7 +39,17 @@ public class PlayerBehaviour : MonoBehaviour
         transform.Translate(direction * moveSpeed * Time.deltaTime);
         PlayerFlip();
     }
-
+    public void MovementVelocity(float _direction)
+    {
+        if (_direction != 0)
+        {
+            anim.SetBool("Walk", true);
+        }
+        direction.x = _direction;
+        direction.x = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(direction.x * moveSpeed, rb.velocity.y);
+        PlayerFlip();
+    }   
     public void PlayerFlip()
     {
         if (direction.x > 0)
@@ -68,10 +75,19 @@ public class PlayerBehaviour : MonoBehaviour
             rb.gravityScale = gravity * (fallMultiplier / 2);
         }
     }
-    public void Jump()
+    public void Run(float _direction)
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            moveSpeed = runSpeed;
+            anim.SetBool("Run", true);
+        }
+        
+    }
+    public void RunJump()
     {
         grounded = false;
-        anim.SetBool("Jump", true);
+        anim.SetBool("RunJump", true);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
     public void JumpHold()
@@ -83,7 +99,7 @@ public class PlayerBehaviour : MonoBehaviour
             isJumping = true;
             anim.SetBool("Jump", true);
             jumpTimeCounter = jumpTime;
-            rb.velocity = Vector2.up * jumpForce;
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
         if (Input.GetKey(KeyCode.Space) && isJumping == true)
@@ -109,6 +125,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             grounded = true;
+            anim.SetBool("RunJump", false);
             anim.SetBool("Jump", false);
         }
     }
