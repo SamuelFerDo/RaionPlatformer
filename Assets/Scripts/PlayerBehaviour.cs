@@ -75,14 +75,10 @@ public class PlayerBehaviour : MonoBehaviour
             rb.gravityScale = gravity * (fallMultiplier / 2);
         }
     }
-    public void Run(float _direction)
+    public void Run()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
             moveSpeed = runSpeed;
             anim.SetBool("Run", true);
-        }
-        
     }
     public void RunJump()
     {

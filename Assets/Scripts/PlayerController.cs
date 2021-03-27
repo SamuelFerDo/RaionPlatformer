@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : PlayerBehaviour
 {
-    protected float getAxis;
-    protected float onRun;
+    [SerializeField] protected float getAxis;
+    [SerializeField] protected bool onRun;
     protected InputApp controls;
 
     public bool onJump;
@@ -19,11 +19,10 @@ public class PlayerController : PlayerBehaviour
             getAxis = 0;
             anim.SetBool("Walk", false);
         };
-        controls.Player.Run.performed += ctx => onRun = ctx.ReadValue<float>();
+        controls.Player.Run.performed += ctx => onRun = true;
         controls.Player.Run.canceled += ctx =>
         {
-            onRun = 0;
-            anim.SetBool("Run", false);
+      
             moveSpeed = defaultSpeed;
         };
 
@@ -44,9 +43,16 @@ public class PlayerController : PlayerBehaviour
     }
     private void Update()
     {
-        //GetAxisMovement();
         JumpHold();
-        Run(onRun);
+        if (onRun && getAxis != 0)
+        {
+            Run();
+        }
+        if (getAxis == 0)
+        {
+            onRun = false;
+            anim.SetBool("Run", false);
+        }
         //InputActionRunJump();
     }
     private void FixedUpdate()
