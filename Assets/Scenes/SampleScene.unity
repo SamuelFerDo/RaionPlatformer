@@ -5123,5 +5123,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrooundTrap
       objectReference: {fileID: 0}
+    - target: {fileID: 7613434050066755518, guid: a7cee8cf736dace40a5fec137f6883f2, type: 3}
+      propertyPath: m_Color.b
+      value: 0.16470589
+      objectReference: {fileID: 0}
+    - target: {fileID: 7613434050066755518, guid: a7cee8cf736dace40a5fec137f6883f2, type: 3}
+      propertyPath: m_Color.g
+      value: 0.08627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7613434050066755518, guid: a7cee8cf736dace40a5fec137f6883f2, type: 3}
+      propertyPath: m_Color.r
+      value: 0.043137256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7cee8cf736dace40a5fec137f6883f2, type: 3}
