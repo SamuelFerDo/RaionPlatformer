@@ -15,7 +15,6 @@ public class LevelManager : MonoBehaviour
 
     public CinemachineVirtualCameraBase cam;
 
-    [Header("Oksigen")]
     [SerializeField] public float oksigenTime;
     public Text oksigemTimeUI;
     public int oksigenTimeInt;
@@ -25,13 +24,13 @@ public class LevelManager : MonoBehaviour
     }
     private void Update()
     {
+        oksigenTime -= Time.deltaTime;
+        oksigenTimeInt = (int)oksigenTime;
+        oksigemTimeUI.text = " OKSIGEN " + oksigenTimeInt;
         if (oksigenTimeInt <= 0)
         {
             Debug.Log("Kalah");
         }
-        oksigenTime -= Time.deltaTime;
-        oksigenTimeInt = (int)oksigenTime;
-        oksigemTimeUI.text = " OKSIGEN " + oksigenTimeInt;
     }
     public void Respawn()
     {
