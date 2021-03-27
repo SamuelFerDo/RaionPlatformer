@@ -17,12 +17,13 @@ public class PlayerController : PlayerBehaviour
         controls.Player.Movement.canceled += ctx =>
         {
             getAxis = 0;
+            anim.SetBool("Run", false);
             anim.SetBool("Walk", false);
         };
         controls.Player.Run.performed += ctx => onRun = true;
         controls.Player.Run.canceled += ctx =>
         {
-      
+            onRun = false;
             moveSpeed = defaultSpeed;
         };
 
@@ -47,11 +48,6 @@ public class PlayerController : PlayerBehaviour
         if (onRun && getAxis != 0)
         {
             Run();
-        }
-        if (getAxis == 0)
-        {
-            onRun = false;
-            anim.SetBool("Run", false);
         }
         //InputActionRunJump();
     }
