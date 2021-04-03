@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2A4AE09F-12C9-9FA1-4D11-D61612901249}</ProjectGuid>
+    <ProjectGuid>{388803A6-D683-3A0F-C233-FD1AF47B2655}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\ButtonAction.cs" />
     <Compile Include="Assets\Scripts\TrapPatrol.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\LevelUnlock.cs" />
     <Compile Include="Assets\Scripts\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\InputApp.cs" />
@@ -68,8 +69,6 @@
     <Compile Include="Assets\Scripts\OksigenPickup.cs" />
     <Compile Include="Assets\Scripts\PlayerDeath.cs" />
     <Compile Include="Assets\Scripts\PlayerBehaviour.cs" />
-    <Compile Include="Assets\Scripts\LevelUnlock.cs" />
-    <Compile Include="Assets\Scripts\UnlockLevelScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
