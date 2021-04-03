@@ -6,6 +6,7 @@ public class TrapGround : MonoBehaviour
 {
     [SerializeField] private float startingTime;
     private float currentTime = 0f;
+    [SerializeField] private Animator anim;
     private void Update()
     {
         if (currentTime > 0)
@@ -22,6 +23,7 @@ public class TrapGround : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             currentTime = startingTime;
+            anim.SetBool("GroundTrap", true);
         }
     }
 }

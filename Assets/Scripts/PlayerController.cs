@@ -7,6 +7,8 @@ public class PlayerController : PlayerBehaviour
     [SerializeField] protected float getAxis;
     [SerializeField] protected bool onRun;
     protected InputApp controls;
+    public GameObject[] players;
+   
 
     public bool onJump;
 
@@ -25,6 +27,7 @@ public class PlayerController : PlayerBehaviour
         {
             onRun = false;
             moveSpeed = defaultSpeed;
+            anim.SetBool("Run", false);
         };
 
        //controls.Player.Jump.performed += ctx => onJump = true;
@@ -52,7 +55,7 @@ public class PlayerController : PlayerBehaviour
         //InputActionRunJump();
     }
     private void FixedUpdate()
-    {
+    {        
         MovementVelocity(getAxis);
     }
     public void InputActionRunJump()
@@ -64,5 +67,14 @@ public class PlayerController : PlayerBehaviour
         onJump = false;
         ModifyPhysic();
     }
-   
+    private void OnLevelWasLoaded(int level)
+    {
+        FindRespawnPoint();
+        players = GameObject.FindGameObjectsWithTag("Player");
+
+        if(players.Length > 1)
+        {
+            Destroy(players[1]);
+        }
+     }
 }

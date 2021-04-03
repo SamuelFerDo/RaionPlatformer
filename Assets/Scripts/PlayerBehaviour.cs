@@ -21,6 +21,8 @@ public class PlayerBehaviour : MonoBehaviour
     public Transform feetPos;
     [SerializeField] public float checkRadius;
     public LayerMask whatIsGround;
+    public float wallLength;
+    public LayerMask wallLayer;
 
     protected Animator anim;
 
@@ -46,7 +48,6 @@ public class PlayerBehaviour : MonoBehaviour
             anim.SetBool("Walk", true);
         }
         direction.x = _direction;
-        direction.x = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(direction.x * moveSpeed, rb.velocity.y);
         PlayerFlip();
     }   
@@ -121,8 +122,12 @@ public class PlayerBehaviour : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             grounded = true;
-            anim.SetBool("RunJump", false);
+           // anim.SetBool("RunJump", false);
             anim.SetBool("Jump", false);
         }
+    }
+    public void FindRespawnPoint()
+    {
+        transform.position = GameObject.FindWithTag("RespawnPoint").transform.position;
     }
 }

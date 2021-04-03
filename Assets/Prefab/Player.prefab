@@ -166,6 +166,16 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  wallLength: 0.5
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  getAxis: 0
+  onRun: 0
+  cam: {fileID: 0}
+  camBound: {fileID: 0}
+  levelManager: {fileID: 0}
+  players: []
   onJump: 0
 --- !u!95 &3915253865968011273
 Animator:

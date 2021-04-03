@@ -10,7 +10,17 @@ public class VoidBarrier : MonoBehaviour
         {
             Destroy(collision.gameObject);
             LevelManager.instance.Respawn();
-            LevelManager.instance.GroundTrapRespawn();
+            LevelManager.instance.GroundTrapRespawn1();
+            LevelManager.instance.GroundTrapRespawn2();
+            LevelManager.instance.GroundTrapRespawn3();
+            LevelManager.instance.GroundTrapRespawn4();
+            LevelManager.instance.GroundTrapRespawn5();
+            LevelManager.instance.GroundTrapRespawn6();
+            LevelManager.instance.GroundTrapRespawn7();
+            LevelManager.instance.GroundTrapRespawn8();
+            LevelManager.instance.GroundTrapRespawn9();
+            LevelManager.instance.GroundTrapRespawn10();
+            LevelManager.instance.GroundTrapRespawn11();
         }
     }
 }
